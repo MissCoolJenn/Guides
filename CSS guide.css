@@ -1,0 +1,337 @@
+/* ****************************************
+СЕЛЕКТОРЫ */
+p {                      /* на месте 'p' может быть любой вид шрифтов или приколов с текстом (отсылка на html guide) */ 
+    color: green;      /* перекрашивает текст абзаца в зеленый */
+    font-size: 20px;     /* изменяет размер на 20 */
+
+    font-family: Arial;  /* изменить шрифт на Arial (шрифты доступные во всех системах - Arial, Courier New, Georgia, Times New Roman, Trebuchet MS, Verdana) */
+        font-family: Arial, 'Helvetica New', sans-serif;  /* множно указать несколько шрифтов, если один не доступен - будет использован следующий 
+                                ^ если в названии >2 слов - из нужно писать в кавычках */
+
+/* html: 
+<link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+^ указание ссылки на шррифт из интернета 
+*/
+    font-family: 'Minecraftia', sans-serif; /* <- шрифт из майнкрафта */
+
+
+    font-style: italic;  /* используется для выделение текста курсивом */
+    font-weight: 400;    /* используется для выделение текста жирным шрифтом в диапазоне от/до:
+                  ^ 100(тонкий)
+                  ^ 700(bold - жирный)
+                  ^ 400(нормальный)         */
+
+    text-transform: uppercase;   /* приобразует текст (uppercase - делает все буквы большими) 
+                        ^ lowercase   - делает все буквы маленькими
+                        ^ capitalize  - делает в каждом слове первую букву большой  */
+
+    text-decoration: underline;  /* underline - добавляет в текст подчеркивание 
+                        ^ line-through - зачеркивает текст
+                        ^ overline - добавляет надчеркивание
+                        ^ none - убирает любое оформление  */
+
+    text-shadow: 3px 2px 3px red, 2px, 4px, 5px, blue;  /* добавляет тень к тексту (через запятую можно указать несколько теней)
+                                ^ цвет тени
+                          ^ третье знач. - радиус размытия
+                      ^ второе знач. - вертикальное смещение
+                  ^ первое знач. - горизонтальное смещение
+
+    text-align: center;   /* выравнивание текста внутри контейнера (center, right, left, justify(по ширине) ) */
+
+    line-height: 1.5;     /* расстояние между строк (например высота строки в 1.5 раза больше высоты шрифта) */
+    letter-spacing: 3px;  /* расстояние между символами */
+    word-spacing: 2px;    /* расстояние между словами */
+}
+
+div, h1, p {                 /* можно применять стиль сразу к несольким видам текста */
+    color: blue;
+}
+
+/* html:    <p>This is <strong>awesome</strong></p> 
+<ul>
+    <li>item 1</li>
+    <li><strong>another</strong> item</li>  <-- только к этому
+</ul>                   */
+
+li strong {         /* селектор обратиться только к тому <strong> который находится внутри <li> */
+    color: purple 
+}
+
+
+
+/* ****************************************
+СЕЛЕКТОРЫ КЛАССА И ID */
+
+/* html:    <div class='my_name'>   (КЛАСС)
+                <p>some text</p>
+            </div>              */
+
+.my_name {          /* селектор который обращается к элементу по имени КЛАССА начинает с точки */
+    color: red;
+}
+
+
+/* html:    <div id='my_id'>        (ID)
+                <p>some text</p>
+            </div>              */
+
+#my_id {            /* селектор который обращается к элементу по ID начинает с # */
+    color: red;
+    background-color: black;
+}
+
+
+
+/* ****************************************
+БЛОКИ */
+
+/*  блоки иду по очереди:
+margin  - пространство между блоком и другими элементами (порядок свойств: top(верх), right(справа), bottom(снизу), left(слева))
+border  - рамка  (может принимать значния: dotted, dashed, solid, double, groove, ridge, inset, outset)   (исли не указать значения - border будет не видимый)
+                                            ^ точки          ^ сплошная      ^ дальше 50% черный 50% цвет в разных вариациях (хуйня)
+                                                    ^ пунктир       ^ двойная сплошная     
+padding - пустое пространство вокруг содержимого (общий размер блока > content + padding x2 + border x2 (например div 250px + padding 20px x2 + border 5px x2 = 300px))
+content - основное содержимое  
+
+так жеможно указывать размер на примере: 
+margin-top: 5px;
+margin-right: 5px;
+margin-left: 1px 
+margin-bottom: 4px  и т.д. */
+
+p {
+    margin: 5px 10px 5px 10px;  /* значения могут быть отрицательными */
+    padding: 5% 5% 5% 5%;       /* значение могут быть в процентрах */
+    border: 3px solid black;
+}
+
+.my_name {
+    width: 50%;   /* ширина и высота блоков (пиксели или проценты) - БЕЗ УЧЕТА PADDING и BORDER*/
+    height: 80%;
+}
+
+#my_id {
+    width: 200px;
+    box-sizing: border-box;  /* указывает ширину и высоту блоков (пиксели или проценты) - С УЧЕТОМ PADDING и BORDER */
+    border: 3px solid black;
+    border-radius: 10px;     /* позволяет закруглять рамки (можно через пробел указать значние для каждого угла */
+}
+
+
+
+/* ****************************************
+ФОН и КАРТИНКИ */
+main {
+    background-color: black;               /* изменяет цвет фона */
+    background-image: url('name_logo.png');  /* изменяет фон на картинку */
+
+    background-repeat: no-repeat;            /* изображение не будет повторятся 
+                        ^ repeat-x  - изображение будет повторятся горизонтали
+                        ^ repeat-y  - изображение будет повторятся вертикали 
+                        ^ repeat    - изображение будет повторятся во всех плоскостях  */
+
+    background-position: 20px 20px;      /* устанавливает позицию картинки (начальная позиция 0 0 находится вверху слева) */
+    background-position: 30% 20%;        /* так же принимает проценты */
+    background-position: center center;  /* либо слова (top, left, right, center, bottom) */
+
+    background-size: contain;  /* изображение увеличится и поместиться внутрь блока целиком 
+                        ^ cover  - изображение увеличится и полностью заполнит блок (часть изображения скорее всего обрежется) */
+}   
+
+
+
+/* ****************************************
+ГРАДИЕНТ */
+div {
+    /* цвет */
+    background: linear-gradient(blue, pink);                   /* - простой градиент (сверху - вниз) */
+    background: linear-gradient(blue, pink, red, yellow);  /* - можно использовать сколько угодно цветов */
+    
+    /* угол */
+    background: linear-gradient(to right, blue, pink);       /* - направление справа - налево */
+    background: linear-gradient(to top right, blue, pink);  /* - направление снизу справа - налево вверх */
+    background: linear-gradient(70deg, blue, pink);        /* - направление 70градусов (0deg > сверху - вниз) */
+    
+    /* соотношение цветов */
+    background: linear-gradient(red 77%, pink); /* 77% - длинна градиента */
+    background: linear-gradient(red 50%, pink 50%); /* при указании 50% с 2х сторон - будет резкий переход */
+
+    /* больше градиентов тут - https://developer.mozilla.org/ru/docs/Web/CSS/CSS_images/Using_CSS_gradients */
+}
+
+
+
+/* ****************************************
+СПИСКИ */
+ul {
+    list-style-type: square;      /* circle(полный круг), square(квадрат), decimal(арабские цифры), disc(точка), lower-alpha(строчные буквы), lower-roman(строчные римские цифры) и т.д. */
+    list-style-position: inside;  /* inside, outside - положение маркеров (по умлчанию - outside) */
+    list-style-image: url('image_name.png');  /* кастомное изображение в качестве маркеров */
+
+    /* или тоже самое можно кратко: */
+    list-style: square inside url('image_name.png');
+
+    display: inline-block;  /* список становится строчным */
+}
+
+
+
+/* ****************************************
+CCЫЛКИ */
+a {                 /* цвет ссылки */
+    color: aqua;  
+    text-decoration: none;  /* убрать подчеркивение ссылок */
+    /* и другие приколы с обычным текстом (СЕЛЕКТОРЫ) / (ФОН) / (БЛОКИ) */
+}
+a:link {            /* стить не посещенных ссылок */
+    color: aquamarine;
+}
+a:visited {         /* стиль посещенных ссылок */
+    color: blueviolet;  
+}
+a:hover {           /* ссылка становится активной при наведении на нее*/
+    color:chartreuse;
+}
+a:active {          /* ссылка становится активной при нажатии на нее */
+    color: coral;
+}
+
+
+
+/* ****************************************
+КУРСОР */
+p {
+    cursor: pointer; /* изменяет курсор
+    /          ^ pointet - кликабельный элемент
+    */
+} 
+
+
+
+
+/* ****************************************
+ТАБЛИЦЫ */
+table {
+    border-collapse: collapse;  /* объеденяет рамки (без стиля) */
+}
+th, td {
+    border: 1px solid black;  /* для елекментов th, td - обводка сплошная черная */
+    padding: 10px;               /* добавляет больше свободного места между текстом и обводкой */
+    text-align: center;           /* выровнять текст по центру */
+}
+th {
+    background-color: cornsilk;   /* изменить цвет фона ячеек заголовка */
+}
+
+tr:nth-child(3) {   /* изменить только 3 строку (нумерация сверху включая заголовок) */
+    background-color: aqua;
+}
+tr:nth-child(even) {   /* изменить только четные строки / 
+              ^ odd - нечетные строки */
+    background-color: aqua;
+}
+
+
+
+/* ****************************************
+ФОРМЫ */
+/* 
+html:   <form>
+            <label for='name'>Name: </label>            - поле ввода имени
+            <input type='text' id='name' placeholder='John Smith'>
+            <br><br>
+            <label for='email'>Email: </label>          - поле ввода ел. почты
+            <input type='email' id='email' placeholder='name@domain.com'>
+            <br><br>
+            <input type='button' value='Send'>          - кнопка отправки
+        </form>     
+*/
+
+input {
+    border: 1px solid green;
+    width: 100%;
+    padding: 5px;
+}
+input[type='text']:hover {    /* input[type='text'] - применить стиль только к конкретному типу поля ввода (можно так же указать button) + можно использовать псевдоселекторы типа ':hover' */
+    border: 1px solid blue;
+    width: 100%;
+    padding: 5px;
+    color: blueviolet;
+    font-weight: bold;
+}
+label {
+    font-weight: bold;
+    color: green;
+}
+
+
+/* ****************************************
+FLEXBOX (сетка для контейнеров) */
+
+/* html:
+<div class='container'>
+    <div class='item_1'>Item 1</div>
+    <div class='item_2'>Item 2</div>
+    <div class='item_3'>Item 3</div>
+    <div class='item_3'>Item 4</div>
+    <div class='item_3'>Item 5</div>
+    <div class='item_3'>Item 6</div>
+</div>
+*/
+
+/* без кода элементы будут располагаться вертикально: 
+[1]
+[2]
+[3]...
+*/ 
+
+.container {
+    display: flex;  /* элементы будут выстраиваться вдоль главной оси (по умолчанию это row (ось Х))
+    пример:
+    [1][2][3]...  */
+
+    flex-direction: column; /* - при указании к примеру 'column-reverse' - элементы отображатсья будут зеркально относительно гл. оси */
+    /* пример:
+    [1]
+    [2]
+    [3]...  */
+
+    flex-wrap: wrap;  /* переносит на новую строку те элементы, которые выходят за границы экрана 
+    пример: 
+    |[1][2][3][4]|
+    |[5][6]      |   */
+
+    flex-basis: 33%;  /* размер элементов относительно размера главной оси 
+    пример:
+    |[ 1 ][ 2 ][ 3 ]|  
+    |[ 4 ]          |*/
+}
+
+.item {
+    height: fit-content;      /* размер контейнера расчитывается по количеству и размеру содержимого */
+    justify-content: center;  /* выравнивание контейнеров относительно главной оси (указывается в 'flex-direction')*/
+                    /* ^ flex-start   - выравнивание относительно начала оси
+                       ^ flex-end      - относительно конца оси  
+                       ^ space-between  - раздвинуть элементы на всю ось с одинаковым растояним друг от друга 
+                       ^ space-around  - как и 'between' только с отступами по краям оси  
+                       ^ space-evenly  - между элементам и до краев экрана будет одинаковое растояние */
+    align-items: center;  /* выравнивания по второсипенной оси (значениеи те же) */
+}
+
+.item_1 {
+    order: 1;  /* элемент у которого самый большой 'order' - уходит в конец списка */
+
+    align-self: center;  /* управление положением отдельного элемента */
+}
+.item_2 {
+    order: 4;
+
+    flex-grow: 4;  /* элемент будет в 2 раза больше метса занимать чем остальные (елси значние 2 - то эл. будет больше только на 50%)
+    пример:
+    |[1][  2  ][3]|  */
+}
+.item_3 {
+    order: 2;
+}
+/* пример: 
+[1][3][2]... */

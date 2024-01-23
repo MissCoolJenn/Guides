@@ -1,0 +1,56 @@
+	*виртуальное окружение
+
+python -m venv .venv  - создать виртуальное окружение ".venv"
+.gitignore  - файл который можно создать в корне папки и добавлять туда всё то, что должно игнорироваться гитом
+python -m pip freeze > requirements.txt  - в файл "requirements.txt" сохранить все библиотеки которые нужны для работы с кодом
+pip install -r requirements.txt  - из файла requirements.txt установить указаные там библиотеки
+pip uninstall *name lib*   - удалить библиотеку
+pip uninstall -r requirements.txt -y   - удалить все библиотеки что записаны в файл требований
+
+
+	*гит и гитхаб
+
+git init  - инициализировать репозиторий
+git status  - статус файлов в которых были или не было изменений
+...
+git remote add origin (ссылка на репозиторий) - добавление сслыки на репозиторий в который будут пушится все изменения
+git commit -m ""  - коммит изменений 
+git push  -u origin main  - запушить коммит в ветку main на гитхаб
+...
+git branch  - move master main  - поменять ветку с master на main
+git log  - посмотреть историю коммитов
+git reset - откат изменений до последнего коммита 
+...
+--force  - если добавить, будет силой пушить изменения на гитхаб даже если до этого были предупреждения о несовместимости и т.д.
+...
+touch .gitignore  - создать файл гит игнор записывая в который имя файлов они будут игнорироваться при создании комитов
+
+
+	*django создание нового проекта
+
+mkdir (название коневой папки проекта)
+cd (только что созданная папка)
+python -m venv .venv
+source .venv/Scripts/activate
+python -m pip install django==4.0.0
+django-admin startproject (название проекта) .  - точка в конце обязательна
+python manage.py startapp (название приложения)
+	^ или если не работает, то :
+python -m django startapp (название приложения)
+
+
+	*heroku
+
+python -m pip install gunicorn==20.1.0  - установить ядро для работы heroku
+...
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]  - (в project.settings.py добавить адреса по которым можно обратиться к сайту)
+web: gunicorn django_project.wsgi --log-file -  - создать в корне файл "Procfile" и добавить туда эту строку
+python-(версия пайтона)  - в файл "runtime.txt" добавить версию пайтона на которой это всё разрабатывалось
+...
+heroku login  - залогиниться в heroku
+heroku create  - подготовить проект на heroku для работы
+heroku config:set DISABLE_COLLECTSTATIC=1  - заставить heroku игнорировать статичесские файлы
+git push heroku main  - запушить последний коммит на в облако heroku
+heroku ps:scale web=1  - выбор тарифа на котором будет работать сайт (1 - бесплатный)
+heroku rename (новое имя страницы)  - переинменовать найзвание и https сайта
+heroku open  - открыть страницу сайта в гугле
