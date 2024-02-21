@@ -75,6 +75,12 @@ function mat_operations() {
     //
     // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math
     //   ^ документация Math
+
+    // округление остатка до целого числа
+    Math.floor(9 / 4);  // получится 2
+
+    // повторить элемент n раз
+    var q = '@'.repeat(10)  // получится @@@@@@@@@@
 }
 
 
@@ -308,13 +314,13 @@ function classes() {
 // ВЗАИМОДЕЙСТВИЕ html, css, js 
 function events() {
 
-    // КОД СРАБАТЫВАЮЩИЙ ПОСЛЕ ПОЛНОЙ ЗАГРУЗКИ СТРАНИЦЫ
+// КОД СРАБАТЫВАЮЩИЙ ПОСЛЕ ПОЛНОЙ ЗАГРУЗКИ СТРАНИЦЫ
     document.addEventListener('DOMContentLoaded', function() { 
         document.body.classList.add('ready');                   // добаляет на стрницу документа класс к которому можно подвязать какой то код
     });
 
 
-    // СМЕНА ТЕКСТА ПРИ НАЖАТИИ НА КНОПКУ
+// СМЕНА ТЕКСТА ПРИ НАЖАТИИ НА КНОПКУ
     /* html:
     <p onclick='Func_name_uhh(this)'>   - можно применить почти на всех тэгах, но лучше использовать '<button>'
                                 ^ в скрипт js будет передаваться этот объект и потом с ним можно будет взаимодействовать
@@ -337,7 +343,7 @@ function events() {
     }
 
 
-    // ОТОБРАЖЕНИЕ ТЕКСТА КОТОРЫЙ Я ВВОЖУ В ПОЛЕ ВВОДА
+// ОТОБРАЖЕНИЕ ТЕКСТА КОТОРЫЙ Я ВВОЖУ В ПОЛЕ ВВОДА
     /* html:
     <imput oninput='Func_name_ssss(this)'>   - можно применить почти на всех тэгах, но лучше использовать '<button>'
     */
@@ -350,7 +356,7 @@ function events() {
     }
 
     
-    // ОБРАЩЕНИЕ К ID ТЕГА html
+// ОБРАЩЕНИЕ К ID ТЕГА html
     /* html:
     <p id='first_p' title='some title text'>Some text</p>
     */
@@ -366,8 +372,7 @@ function events() {
     // короткая версия, но если изменений больше 1 лучше использовать переменную
 
 
-
-    // ОБРАБОТЧИК СОБЫТИЙ ( addEventListener() )
+// ОБРАБОТЧИК СОБЫТИЙ ( addEventListener() )
     document.getElementById("elemet_id").addEventListener('click', function() {function_name()});
     //                          ^ id елемента                        ^ анонимная фунция вызывающая другую функцию
     //         ^ найти элемент по id       ^ добавить обработчик события
@@ -376,16 +381,25 @@ function events() {
     //                                                                          keydown - нажатие кнопки на клавиатуре 
     
 
-    // ДОБАВЛЕНИЕ КЛАССОВ ОБЪЕКТАМ / ДОКУМЕНТУ
+// ДОБАВЛЕНИЕ КЛАССОВ ОБЪЕКТАМ / ДОКУМЕНТУ
     document.getElementById(q).classList.add('scale-up-center');      // добавить класс объекту 'q'
     document.getElementById(q).classList.remove('scale-up-center');   // удалить класс у объекта 'q'
 
 
-    // КАК ПОМЕНЯТЬ СТИЛИ
+// ВЗАИМОДЕЙСТВИЕ С ОКНОМ БРАУЗЕРА ПОЛЬЗОВАТЕЛЯ
+    // при изменении размеров окна - вызвать функцию
+    window.onresize = function_name;
+
+    // получение размеров окна браузера пользователя
+    var window_size_Y = window.innerHeight;
+    var window_size_X = window.innerWidth;
+
+
+
+// КАК ПОМЕНЯТЬ СТИЛИ
     /* html:
     <imput oninput='change(this)'>   - можно применить почти на всех тэгах, но лучше использовать '<button>'
     */
-
     function change() {
         if(obj.value == 'red') {
             obj.style.background = 'red';  // если в поле ввода будет написано 'red' - фон поменяется на красный
@@ -395,7 +409,7 @@ function events() {
     }
 
 
-    // СОЗДАНИЕ МАССИВА ТЭГОВ (по названию тэга)
+// СОЗДАНИЕ МАССИВА ТЭГОВ (по названию тэга)
     /* html:
     <span>Text_1</span>
     <span>Text_2</span>
@@ -408,7 +422,7 @@ function events() {
     }
 
 
-    // СОЗДАНИЕ МАССИВА ТЭГОВ (по классу)
+// СОЗДАНИЕ МАССИВА ТЭГОВ (по классу)
     /* html:
     <span class='class_name'>Text_1</span>
     <span class='class_name'>Text_2</span>

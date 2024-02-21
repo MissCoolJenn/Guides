@@ -50,16 +50,22 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
-    <head>      <!-- испорт CSS в Django -->
+    <head>      <!-- испорт CSS в django -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+
+                <!-- испорт CSS в flask -->
+        <link type="text/css" href="{{ url_for('static', filename='css/home.css')}}">
     </head>
 
 
 
 <!-- испорт Java Script, script, noscript -->
     <head>
-        <script src="file.js"></script>                   <!-- испорт Java Script файла в которому можно обращаться -->
-        <script src="{% static 'JS/base.js' %}"></script>  <!-- испорт Java Script файла в django -->
+        <script src="file.js"></script>                                         <!-- испорт Java Script файла в которому можно обращаться -->
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>   <!-- импорт Java Script в Flask -->
+
+        <script src="{% static 'JS/base.js' %}"></script>                       <!-- испорт Java Script файла в jinja2 -->
     </head>
 
     <script>
