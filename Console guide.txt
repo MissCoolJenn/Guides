@@ -26,6 +26,36 @@ git reset - откат изменений до последнего коммит
 touch .gitignore  - создать файл гит игнор записывая в который имя файлов они будут игнорироваться при создании комитов
 
 
+	*docker
+
+docker init    - инициализация
+...
+docker build -t telegram_bot:latest .    - сборка контейнера
+	-t telegram_bot:latest   - имя образа к которому потом можно обращатся  + версия
+...
+docker run -d --name shit_name telegram_bot:latest    - запуска контейнера на основе указанного docker образа
+	-d   - запуск в фоновом режиме что бы можно было пользоваться консолью
+	--name shit_name   - название контейнера, по названию потом с него можно получать логи, запускать, выключать...
+	zalupa_name:latest   - имя и тэг docker образа из которого будет создан контейнер + версия
+	.   - искать контент надо в той же папке где и находимся сейчас
+...
+docker stop telegram_bot_container    - остановка контейнера
+docker rm telegram_bot_container    - удаление контейнера
+...
+docker images    - показать мои образы
+docker rmi <image_name>    - удаление по имени образа
+docker rmi <image_name>:<tag>    - то же самое + тэг
+docker rmi <image_name_1>  <image_name_2>     - удаление нескольких подряд
+docker image prune     - удаление всех неиспользуемых (те что не связаны с контейнерами)
+...
+docker ps -a    - показать мио контейнеры
+docker rm <container_id>    - удалить контейнер по айди
+docker rm <container_name>    - удалить по имени
+
+
+
+
+
 	*django создание нового проекта
 
 mkdir (название коневой папки проекта)
