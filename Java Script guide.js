@@ -584,6 +584,36 @@ function idk() {
 }
 
 
+
+// ************************************************************************************************************************
+// ХРАНИЛИЩЕ В ХРОМ (chrome.storage.local)
+
+// Сохранение данных
+let userSettings = {
+    theme: 'dark',
+    language: 'en'
+    };
+    chrome.storage.local.set({ settings: userSettings }, function() {
+        console.log('Настройки сохранены.');
+    });
+
+// Получение данных
+chrome.storage.local.get(['settings'], function(result) {
+    console.log('Настройки:', result.settings);
+});
+
+// Удаление нескольких значений
+chrome.storage.local.remove(['key1', 'key2'], function() {
+    console.log('Ключи "key1" и "key2" удалены.');
+});
+
+// Удаление полностью всех значений
+chrome.storage.local.clear(function() {
+    console.log('Хранилище очищено.');
+});
+
+
+
 // ************************************************************************************************************************
 // РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ (или ещё Метасимволы)
 var old = "what is 44 hours in week?";  // строка с текстом
