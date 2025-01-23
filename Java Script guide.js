@@ -146,6 +146,17 @@ function timer_and_intervals() {
     setTimeout(function() {     // таймер сработает только один раз после ожидание заданного времени
         console.log('some text')
     }, 2000);
+
+    
+    // ЦИКЛ выполняющий код с промежутком во времени между итерациями
+    (async function animateElements() {
+        for (let i = 0; i < item_count; i++) {
+            // ... 
+            // ... 
+            // ... 
+            await new Promise((r) => setTimeout(r, 100));
+        }
+    })();
 }
 
 
@@ -163,6 +174,18 @@ function Datetime() {
     console.log('Время сейчас: ' + date.getHours + date.getMinutes);  // выведет "время сейчас: " и часы + минуты
 
     date.setHours(13);   // установить свое время ( например 13 часов дня )
+
+
+    // Создаем объект с текущей датой
+    const today = new Date();
+    // Получаем год
+    const year = today.getFullYear();
+    // Получаем месяц (обратите внимание, что месяцы начинаются с 0, поэтому прибавляем 1)
+    const month = today.getMonth() + 1;
+    // Получаем день месяца
+    const day = today.getDate();
+    
+    console.log(`Год: ${year}, Месяц: ${month}, День: ${day}`);
 }
 
 
@@ -206,7 +229,44 @@ function arrays() {
 
     // объеденение массива в строку
     console.log(arr.join(', '));   // получится просто строка: "1, 12, '3', false, 6678, 'dasg'"
+
+    // проверка есть ли элемент в массиве
+    let arr = [1, 2, 3, 4, 5];
+    console.log(arr.includes(3)); // true
+    console.log(arr.includes(6)); // false
 }
+
+
+
+// ************************************************************************************************************************
+// СЛОВАРИ
+// создание объекта словаря
+let dictionary = {
+    "apple": "A fruit that grows on a tree",
+    "banana": "A yellow fruit"
+};
+
+// добавление нового значения в словарь
+dictionary["orange"] = "A round orange fruit";
+console.log(dictionary);            // Object { apple: "A fruit that grows on a tree", banana: "A yellow fruit", orange: "A round orange fruit" }
+
+// обновление данных
+dictionary["apple"] = "A red or green fruit that grows on a tree";
+console.log(dictionary.apple);      // "A red or green fruit that grows on a tree"
+
+// получение данных
+console.log(dictionary["apple"]);   // "A red or green fruit that grows on a tree"
+console.log(dictionary.banana);     // "A yellow fruit"
+
+// проверка наличия ключа
+console.log("apple" in dictionary);                 // true
+console.log(dictionary.hasOwnProperty("orange"));   // false
+
+// удаление ключа
+delete dictionary["banana"];
+console.log(dictionary);            // Object { apple: "A fruit that grows on a tree" }
+
+    // Еще можно использовать Map() - обладает расширеными возможностями, но мне впадлу сейчас...
 
 
 // ************************************************************************************************************************
@@ -593,13 +653,22 @@ let userSettings = {
     theme: 'dark',
     language: 'en'
     };
-    chrome.storage.local.set({ settings: userSettings }, function() {
-        console.log('Настройки сохранены.');
-    });
+chrome.storage.local.set({ settings: userSettings }, function() {
+    console.log('Настройки сохранены.');
+});
 
 // Получение данных
 chrome.storage.local.get(['settings'], function(result) {
     console.log('Настройки:', result.settings);
+});
+
+// Проверка сущетвует ли значние в БД
+chrome.storage.local.get(['myKey'], function(result) {
+    if (result.myKey === undefined) {
+        console.log('Значение отсутствует в хранилище.');
+    } else {
+        console.log('Значение найдено:', result.myKey);
+    }
 });
 
 // Удаление нескольких значений

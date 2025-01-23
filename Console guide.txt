@@ -41,6 +41,32 @@ python manage.py startapp (название приложения)
 	^ или если не работает, то :
 python -m django startapp (название приложения)
 
+** - добавить название приложение в settings - installed apps
+** - добавить название папки темплейтов в settings - DIRS
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+** - 
+
+
+
+	*Raspberry pi pico (RP2040)
+(Bootmode) - настроить интерпритатор - установить или обновить MicroPython - arduino... не помню
+    ^ установка ядра
+
+(IDE Thonny) - MicroPython (Pi Pico) - port Board COM16
+    ^ подключение к плате для запуска скриптов на ней
+
+"main.py" - имя файла для автозапуска кода при подаче питания
+
+
 
 	*heroku
 
