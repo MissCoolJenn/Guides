@@ -17,6 +17,12 @@ SELECT int_column+500 FROM table_name   # к значениям в коленн�
 
 
 #****************************************
+# " ЗАЩИТА ОТ SQL INJECTION "
+cursor.execute("INSERT INTO main (user_name, date, tips) VALUES (?, ?, ?)", (user_name, date, tips))
+
+
+
+#****************************************
 # " ПОДЗАПРОСЫ "
 
 SELECT int_column FROM columns_name

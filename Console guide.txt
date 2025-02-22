@@ -1,6 +1,8 @@
-	*виртуальное окружение
+	    *виртуальное окружение
 
 python -m venv .venv  - создать виртуальное окружение ".venv"
+source .venv/bin/activate  - включить виртуальное окружение (на линукс)
+deactivate  - выключить в.о.
 .gitignore  - файл который можно создать в корне папки и добавлять туда всё то, что должно игнорироваться гитом
 python -m pip freeze > requirements.txt  - в файл "requirements.txt" сохранить все библиотеки которые нужны для работы с кодом
 pip install -r requirements.txt  - из файла requirements.txt установить указаные там библиотеки
@@ -8,7 +10,9 @@ pip uninstall *name lib*   - удалить библиотеку
 pip uninstall -r requirements.txt -y   - удалить все библиотеки что записаны в файл требований
 
 
-	*гит и гитхаб
+
+
+	    *гит и гитхаб
 
 git init  - инициализировать репозиторий
 git status  - статус файлов в которых были или не было изменений
@@ -29,7 +33,8 @@ git reset - откат изменений до последнего коммит
 touch .gitignore  - создать файл гит игнор записывая в который имя файлов они будут игнорироваться при создании комитов
 
 
-	*django создание нового проекта
+
+	    *django создание нового проекта
 
 mkdir (название коневой папки проекта)
 cd (только что созданная папка)
@@ -57,7 +62,108 @@ python -m django startapp (название приложения)
 
 
 
-	*Raspberry pi pico (RP2040)
+        * Подключение React к django
+
+    (БЭКЭНД)
+- Установить django, djangorestframework, django-cors-headers
+
+- Создание django проекта и приложения
+- Создание самой обычной модели Бд в .models
+- (по желанию регистрация в админ панели для отладки)
+
+- Создание сериализатора (конвертирует переменные из python'a в формат JSON который уже можно использовать в JS)
+========================
+from rest_framework import serializers
+from .models import Test_DB
+
+class PostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Test_DB
+        fields = ['title', 'text']
+========================
+
+- Написать .view в виде API
+========================
+from django.shortcuts import render
+from rest_framework.views import APIView
+from .models import Test_DB
+from .serializer import PostSerializer
+from rest_framework.response import Response
+
+# Create your views here.
+class StoreView(APIView):
+    def get(self, request):
+        output = [
+            {
+                'title': output.title,
+                'text': output.text
+            } for output in Test_DB.objects.all()
+        ]
+        return Response(output)
+    
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+========================
+
+- Настроить маршрут в главном файле url
+========================
+from django.contrib import admin
+from django.urls import path
+from django.urls import re_path as url
+from Store.views import *
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', StoreView.as_view(), name='title')
+]
+========================
+
+- Настройка Corsheaders и Restframework внутри settings.py
+========================
+INSTALLED_APPS = [
+    ...
+    'Store',
+    'corsheaders',
+    'rest_framework', 
+]
+
+MIDDLEWARE = [
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+# указка что нужно принимать все запросы, даже те что не прошли подтверждение подлинности и аутентификации
+#   (в адекватном приложении нужно будет использовать jwt токены для безопасности)
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
+
+# указка здесь и в middleware для джанга что приложения запущены на одном источнике и передавать данные безопасно
+CORS_ORIGINN_ALLOW_ALL = True
+========================
+    ^ это всё дает разрешение джанге на передачу данных не только внутри самого джанга,
+        а и через запросы rest api например в реакт
+            (политика SOP (same origin politic) т.к. джанга и реакт работают на разных портах)
+
+- Дальше можно делать миграцию, регать админа и проверяь Rest на главной странице
+
+    (Фронтенд)
+
+
+
+
+
+
+
+
+
+	    *Raspberry pi pico (RP2040)
+
 (Bootmode) - настроить интерпритатор - установить или обновить MicroPython - arduino... не помню
     ^ установка ядра
 
@@ -68,7 +174,7 @@ python -m django startapp (название приложения)
 
 
 
-	*heroku
+	    *heroku
 
 python -m pip install gunicorn==20.1.0  - установить ядро для работы heroku
 ...
