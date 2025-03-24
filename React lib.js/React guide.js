@@ -118,13 +118,22 @@ class Body_c2 extends React.Component {
 
 // каждый компонент в целом принято всоздавать в отдельном файле
 
-// файл Header.js скорочено:
+// файл Header.js скорочено (через класс (сложнее) ):
 //"
 //import React from "react"
 //class Header extends React.Component
 //    return *header* 
 //export default Header
 //"
+
+//function MyComponent(props) {
+//    return (
+//        <div>
+//            <h1>Привет, это мой компонент!</h1>
+//            <p>{props.message}</p>
+//        </div>
+//    );
+//}
 
 // Вызов самого компонента в коде:
 } 
@@ -150,3 +159,19 @@ class Image extends React.Component {
 }
 
 
+
+<>- Передача данных между компонентами через props -----------</>
+// Родительский компонент
+function ParentComponent() {
+    const message = "Привет, дочерний компонент!";
+    return <ChildComponent text={message} />;
+}
+  
+// Дочерний компонент
+function ChildComponent(props) {
+    return <p>{props.text}</p>;
+}
+
+
+
+<>- Получение данных из Django (через axios вместо просто fetch) -</>

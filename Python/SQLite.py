@@ -1,7 +1,7 @@
 import sqlite3
 
 conn = sqlite3.connect('DB_name.db')
-coursor = conn.cursor()
+cursor = conn.cursor()
 
 cursor.execute("""
                 CREATE TABLE IF NOT EXISTS main (
