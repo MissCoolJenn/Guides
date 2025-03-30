@@ -9,6 +9,9 @@
 //      cd {app_name}
 //      yarn start
 
+// Так же для маршрутизации между страницами нужно установить react router:
+//      yarn add raact-router-dom
+
 //      To create a production build, use yarn build.
 
 //      документация react: https://react.dev/learn
